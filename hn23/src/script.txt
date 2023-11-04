@@ -1,0 +1,127 @@
+
+----------------------------------------------------------------------------------------------------------------------------------------
+ENTERING ARCADE
+
+You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car's window.
+Recalling your long-standing curiosity about the rarely-visited arcade, you decide to finally explore it for yourself.
+
+As the car pulls up towards the entrance, you step outside. The battered sign above the front door barely makes out the words "Arcade." 
+Eerie silence surrounds you as you approach the entrance. The door creaks open as you slowly step inside.
+
+As you walk in, you hear something behind you...
+
+** B A M **
+
+The door slams shut,  Panic sets in, and you fumble for the light switch. Unfortunately, it's a power outage, and the entire arcade remains in darkness.
+
+In the dim glow of an emergency exit sign, you can make out the flickering screen of a few arcade machines in the distance,
+casting an eerie light within the room.
+
+What do you do?
+1. Investigate the nearest arcade machine.
+2. Search for a way to restore power.
+3. Try to open the door and escape.
+
+Type the number of your choice and press Enter:
+
+
+
+1) You cautiously make your way through the dark arcade towards the nearest flickering arcade machine.
+ As you get closer, you can make out the screen displaying the classic game "Snake."
+
+The nostalgic sight of the game brings back memories of hours spent playing it on your old Nokia phone.
+The controls seem operational, and a small prompt on the screen asks if you want to play.
+
+Do you want to play the game?
+1. Yes
+2. No
+
+Type the number of your choice and press Enter:
+
+
+2) You decide to search for a way to restore power. Slowly, you move through the dimly lit arcade and look for any signs of a generator.
+After an exhaustive search, you realize that there is no obvious way to restore the power.
+Frustrated and a bit anxious, you rethink your options.
+
+What do you do now?
+1. Investigate the nearest arcade machine.
+3. Try to open the door.
+
+Type the number of your choice and press Enter:
+
+
+3)You're curious about the mysterious door slamming shut. You inspect the door more closely by turning the handle, however the door has
+automatically locked.
+
+What do you do now?
+1. Investigate the nearest arcade machine .
+2. Search for a way to restore power.
+
+Type the number of your choice and press Enter:
+
+----------------------------------------------------------------------------------------------------------------------------------------
+BEATING SNAKE:
+
+As you reach the end of the game, you notice a flicker of light above you. 
+In an instant, a dazzling array of flashing, vibrant coloured lights envelop the room, completley changing the once dim atmosphere.
+You hear the nostalgic 8-bit music fill the air, as the arcade is instantly brought back to life.
+
+You turn your attention to the other arcade machine you saw flickering earlier, but notice a message flashes on the screen: "JOYCON MISSING."
+Puzzled, you inspect the machine and notice that one of its two joycons is indeed missing.
+Your gaze sweeps the room in search of the missing joycon, and you can't help but notice a door you didn't notice earlier, as well as a
+a bright light reflecting off an object that appears to be a metal box.
+What do you do next?
+1. Search for the missing joycon in the room behind the door.
+2. Investigate the metal box.
+
+Type the number of your choice and press Enter:
+
+
+1) You approach the dust-covered door, however, as you attempt to turn the doorknob the door won't budge. It seems like its locked.
+What do you do?
+1. Try again
+2. Investigate the metal box.
+
+Type the number of your choice and press Enter:
+
+
+2) You decide to explore the metal box, but as you approach it, you realize that it's not just any metal box; it's a prize counter!
+You decide to browse the various shelves, when you spot something interesting— a key!
+You wonder if this key might be the solution to unlocking the locked door.
+
+What do you do now?
+1. Use the key to unlock the door
+
+Type the number of your choice and press Enter:
+
+
+
+1)You carefully insert the key into the lock and turn it. The door clicks open and you step inside, noticing the cobwebs hanging in the corners,
+thick layers of dust. It's clear that this room hasn't been visited in quite some time.
+Your gaze sweeps over the room, and there, on a dusty shelf, you spot the missing joycon. 
+It's partially concealed under a layer of dust and appears to be in good condition. 
+With the joycon in hand, you can now fix the broken arcade machine.
+
+What do you do now?
+1. Return to the arcade machine with the joycon.
+
+Type the number of your choice and press Enter:
+
+
+1) You retrace your steps back to the arcade machineand slot the joycon back into its place. The error message disappeares and the game starts up.
+The familiar "Space Invaders" title lights up the screen. A message appears: "DO YOU WANT TO PLAY?"
+
+Do you want to play Space Invaders?
+1. Yes
+2. No
+
+Type the number of your choice and press Enter:
+
+2) You hesitate as you question whether you want to play it or not. Its such a classic game though, how could you possibly say no? 
+You give in and proceed to press START.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+AFTER SPACE RAIDERS
+
+
+
