@@ -26,11 +26,12 @@ body {
 
 header {
   background-color: #1a1919;
-  /* padding: 20px; */
+  padding: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 
 
 .computerScreen {
@@ -40,8 +41,8 @@ header {
   background-color: rgb(109, 109, 109);
   text-align: center;
   bottom: 50px;
-  width: 900px;
-  height: 520px;
+  width: 1000px;
+  height: 620px;
   /* border: 8px solid rgb(8, 110, 73); */
   /* border: 8px solid rgb(151, 153, 152); */
 
@@ -58,9 +59,9 @@ header {
   background-color: rgb(70, 72, 75);
   text-align: center;
   bottom: 20px;
-  width: 700px;
+  width: 800px;
   padding-right: 80px;
-  height: 450px;
+  height: 550px;
   /* border: 8px solid rgb(8, 110, 73); */
   border: 4px solid rgb(51, 50, 50);
 
@@ -78,21 +79,21 @@ header {
   background-color: rgb(104, 36, 36);
   bottom: 50px;
   right:100px;
-  width: 30px;
-  margin-left:690px;
-  margin-top:300px;
-  height: 30px;
+  width: 40px;
+  margin-left:790px;
+  margin-top:250px;
+  height: 40px;
   border: 2px solid rgb(58, 16, 16);
 }
 
 .terminal {
-  border-radius: 25px;
+  border-radius: 50px;
   box-shadow: 0px 15px rgba(0, 0, 0, 0.404) inset;
   background-color: rgb(16, 17, 19);
   text-align: center;
   bottom: 50px;
-  width: 650px;
-  height: 400px;
+  width: 750px;
+  height: 500px;
   /* border: 8px solid rgb(8, 110, 73); */
   border: 8px solid rgb(15, 15, 15);
 
@@ -101,6 +102,21 @@ header {
   align-items: center;
   /* margin-bottom:50px; */
 
+}
+
+
+.computerLine{
+  padding-top: 1px;
+  background-color: rgb(109, 109, 109);
+  text-align: center;
+  bottom: 50px;
+  width: 800px;
+  height: 15px;
+  border-bottom: 2px solid rgb(77, 73, 73);
+
+  margin: auto;
+  align-items: center;
+  display: block;
 }
 
 

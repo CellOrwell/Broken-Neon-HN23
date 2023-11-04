@@ -36,13 +36,11 @@ function App() {
   return (
     <div>
       <header>
-        <img src={require('./hacknottsLogo.png')} style={{
+        {/* <img src={require('./hacknottsLogo.png')} style={{
           width: '200px',
           height: '200px',
-          verticalAlign: 'middle',
-
-        }}></img>
-        {/* <h1>HackNotts '23 </h1> */}
+        }}></img> */}
+        <h1 style={{ margin:'auto' }}>HackNotts '23 </h1>
       </header>
 
       <main>
@@ -57,27 +55,20 @@ function App() {
                 <button className="computerButton"></button>
 
               </div>
-
             </div>
-
-
-            {/* <div className="computerButton">
-
-
-            </div> */}
+            <div className="computerLine"></div>
           </div>
 
         </section>
 
-        <section classame="chatBar">
+        {/* <section classame="chatBar">
           {chatProcessing()};
-
-        </section>
+        </section> */}
       </main>
 
     </div>
 
-  );
+  )
 }
 // }
 
