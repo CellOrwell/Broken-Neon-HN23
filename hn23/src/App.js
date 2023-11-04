@@ -8,11 +8,11 @@ function gameDisplay(user_input) {
   //Call specific function to draw ASCII game
 
   //Have a continuous calling of this function?  To constantly update the game,
-  
-  return(
+
+  return (
     <div>
       {/* Display ASCII game */}
-      
+
     </div>
   )
 }
@@ -24,7 +24,7 @@ function chatProcessing(user_input) {
 
   return (
     <div>
-      
+
     </div>
   );
 }
@@ -36,17 +36,35 @@ function App() {
   return (
     <div>
       <header>
-        <h1>HACKNOTTS 2023 </h1>
+        <img src={require('./hacknottsLogo.png')} style={{
+          width: '200px',
+          height: '200px',
+          verticalAlign: 'middle',
+
+        }}></img>
+        {/* <h1>HackNotts '23 </h1> */}
       </header>
 
       <main>
-        <p className="App-intro">
-          With Jesra, Josh, Freddie, and ofc chica our beloved ~<br></br><br></br>
-        </p>
+        <section className="terminalSection" style={{ marginTop: '50px' }}>
+          <div className="computerScreen">
+            <div className="buttonScreen" style={{ marginTop: '30px' }}>
+              {/* <button className="computerButton" onClick={()}></button> */}
+              {/* <button className="computerButton"></button> */}
 
-        <section className="terminalSection">
-          <div className="terminal">
-            <p>ADVENTURE GAME STUFF</p>
+              <div className="terminal" style={{ marginTop: '20px' }}>
+                <p>ADVENTURE GAME STUFF</p>
+                <button className="computerButton"></button>
+
+              </div>
+
+            </div>
+
+
+            {/* <div className="computerButton">
+
+
+            </div> */}
           </div>
 
         </section>
