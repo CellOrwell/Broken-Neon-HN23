@@ -13,42 +13,56 @@ function resetNewChoice() {
 }
 
 function printInfo() {
-    console.log(choices.getChoiceDesc());
+    return choices.getChoiceDesc();
 }
 
 function printAllOptions() {
-    printConditionalOptions();
-    printUnConditionalOptions();
+    let finString = "";
+    finString += printConditionalOptions();
+    return finString += printUnConditionalOptions();
 }
 
 function printConditionalOptions() {
+    let finString = "";
     for(i = 1; i < choices.getCondOptionLength() + 1; i++) {
         let chosen = choices.getConditionalOptions()[i - 1];
         if(choices.isInInv(chosen.dependence)) {
-            console.log((i - unprintedOptions) + ". " + chosen.desc);
+            let string = (i - unprintedOptions) + ". " + chosen.desc + "\n";
+            finString += string;
         } else if (choices.addInv(chosen.items) && choices.isInInv(chosen.dependence)){
-            console.log((i - unprintedOptions) + ". " + chosen.desc);
+            let string = (i - unprintedOptions) + ". " + chosen.desc + "\n";
+            finString += string;
         } else {
             unprintedOptions++;
         }
     }
+
+    return finString;
+
+    
 }
 
 function printUnConditionalOptions() {
+    let finString = "";
     for(i = 1; i < choices.getUnCondOptionLength() + 1; i++) {
         let chosen = choices.getUnConditionalOptions()[i - 1];
         if (chosen.hasOwnProperty("items")){
             if(choices.addInv(chosen.items))
             {
-                console.log((i + choices.getCondOptionLength() - unprintedOptions) + ". " + chosen.desc);
+                let string = (i + choices.getCondOptionLength() - unprintedOptions) + ". " + chosen.desc + "\n";
+                finString += string;
             }
             else {
+
                 unprintedOptions++;
             }
         } else {
-            console.log((i + choices.getCondOptionLength() - unprintedOptions) + ". " + chosen.desc);
+            let string = (i + choices.getCondOptionLength() - unprintedOptions) + ". " + chosen.desc + "\n";
+            finString += string;
         }
     }
+
+    return finString;
 }
 
 function getUserInput() {
@@ -66,7 +80,6 @@ What do you choose? `, (answer) => {
                     resolve();
                 }
                 catch (err) {
-                    console.log(err);
                     console.log(`Incorrect Answer. Please Choose from the Inputs Given.`);
                     prompt();
                 }
@@ -76,21 +89,55 @@ What do you choose? `, (answer) => {
     });
 }
 
-
-async function mainGame() {
-    printInfo();
-    console.log("");
-    printAllOptions();
-    await getUserInput();
+function checkIfEnd() {
     if(choices.getChoice().hasOwnProperty("end")) {
-        printInfo();
-        rl.close();
-        process.exit(0);
-    } else if (choices.getChoice().hasOwnProperty("items")) {
-        choices.addInv();
+        return "end";
     }
-    resetNewChoice();
-    mainGame();
 }
 
-mainGame();
+function processUserData(data) {
+    try {
+        intAns = parseInt(data, 10);
+        if(!(intAns > 0 && intAns <= choices.getCondOptionLength() + choices.getUnCondOptionLength() - unprintedOptions)) {
+            throw new Error("Out of Range");
+        } 
+        choices.getNewChoice(intAns, unprintedOptions);
+    }
+    catch (err) {
+        console.log(`Incorrect Answer. Please Choose from the Inputs Given.`);
+    }
+}
+
+function getUnprinted() {
+    return unprintedOptions;
+}
+
+function setUnprinted(set) {
+    unprintedOptions = set;
+}
+
+// async function mainGame() {
+//     console.log(printInfo());
+//     console.log("");
+//     console.log(printAllOptions());
+//     await getUserInput();
+//     if(choices.getChoice().hasOwnProperty("end")) {
+//         printInfo();
+//         rl.close();
+//         process.exit(0);
+//     }
+//     resetNewChoice();
+//     mainGame();
+// }
+
+// mainGame();
+
+module.exports = {
+    printInfo,
+    printAllOptions,
+    checkIfEnd,
+    resetNewChoice,
+    processUserData,
+    getUnprinted,
+    setUnprinted,
+}

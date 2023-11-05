@@ -241,8 +241,11 @@ function getNewChoice(newChoice, unprintedOptions) {
         }
 
         curChoice = chosen.id;
+        console.log(chosen);
         if(chosen.hasOwnProperty("items")) {
             addToInv(chosen.items);
+            console.log("Hello!");
+            console.log(inventory);
         }
     } else {
         newChoiceNum = newChoiceMinus - getCondOptionLength();
