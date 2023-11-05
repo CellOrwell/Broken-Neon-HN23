@@ -5,6 +5,9 @@ import rainSound from './rain.mp3';
 import carSound from './carArriving.mp3';
 import doorSound from './doorSlam.mp3';
 import footstepsSound from './footsteps.mp3';
+import snakeGame from './Snake.jsx';
+
+const displaySnake = 1;
 
 function typingEffect(recievedText, delay) {
   const [text, setText] = useState('');
@@ -116,13 +119,14 @@ function App() {
             <div className="buttonScreen" style={{ marginTop: '30px' }}>
 
               <div className="terminal" style={{ marginTop: '20px' }}>
-              {/* <button className="computerButton"></button> */}
-
-                {/* {initialText = printInfo()}; */}
+              {snakeGame()};
+                {displaySnake ? (
+                <TypingEffectComponent initialText={snakeGame()}></TypingEffectComponent> // Render SnakeGame if displaySnake is true
+                ) : (
                 <TypingEffectComponent initialText="You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car's window.
                 ">
                 </TypingEffectComponent>
-
+                )}
               </div>
 
 
