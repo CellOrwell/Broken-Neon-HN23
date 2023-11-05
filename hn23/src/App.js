@@ -201,14 +201,28 @@ function App() {
             <div className="buttonScreen" style={{ marginTop: '30px' }}>
 
               <div className="terminal" style={{ marginTop: '20px' }}>
-              {snakeGame()};
+              {snakeGame(`As you walk in, you hear something behind you...
+
+** B A M **
+        
+The door slams shut,  Panic sets in, and you fumble for the light switch. Unfortunately, it's a power outage, and the entire arcade remains in darkness.
+        
+In the dim glow of an emergency exit sign, you can make out the flickering screen of an arcade machine in the distance,
+casting an eerie light within the room.
+
+What do you do?`)};
                 {displaySnake ? (
-                <TypingEffectComponent initialText={snakeGame()}></TypingEffectComponent> // Render SnakeGame if displaySnake is true
-                ) : (
-                <TypingEffectComponent initialText="You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car's window.
-                ">
-                </TypingEffectComponent>
-                )}
+                <TypingEffectComponent initialText={snakeGame(`As you walk in, you hear something behind you...
+
+** B A M **
+        
+The door slams shut,  Panic sets in, and you fumble for the light switch. Unfortunately, it's a power outage, and the entire arcade remains in darkness.
+        
+In the dim glow of an emergency exit sign, you can make out the flickering screen of an arcade machine in the distance,
+casting an eerie light within the room.
+
+What do you do?`)}></TypingEffectComponent> // Render SnakeGame if displaySnake is true
+                ) : (<div></div>)}
               </div>
 
 
