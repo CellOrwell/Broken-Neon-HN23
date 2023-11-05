@@ -236,12 +236,9 @@ function getNewChoice(newChoice, unprintedOptions) {
             changeText(chosen.change);
         }
 
-        curChoice = chosen.id;
-        console.log(chosen);
+        curChoice = chosen.id;''
         if(chosen.hasOwnProperty("items")) {
             addToInv(chosen.items);
-            console.log("Hello!");
-            console.log(inventory);
         }
     } else {
         newChoiceNum = newChoiceMinus - getCondOptionLength();

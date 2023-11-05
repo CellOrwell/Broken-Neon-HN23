@@ -12,7 +12,10 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/api/getInfo', (req, res) => {
-    res.json({message: game.printInfo()});
+    const data = {
+        message: game.getAllPrint(),
+    }
+    res.json(data);
 });
 
 app.get('/api/getChoices', (req, res) => {
