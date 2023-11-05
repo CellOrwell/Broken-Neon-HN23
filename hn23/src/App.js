@@ -256,11 +256,7 @@ function App() {
                 <TypingEffectComponent initialText="You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car's window.
                 ">
                 </TypingEffectComponent>
-<<<<<<< HEAD
-
-=======
                 )}
->>>>>>> fb3dca8b0eb58a162e8fc1d8460619f51c13db47
               </div>
 
 
