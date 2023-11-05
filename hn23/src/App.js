@@ -37,7 +37,7 @@ function typingEffect(recievedText, delay) {
 }
 
 function TypingEffectComponent({ initialText }) {
-  const { text, isTyping } = typingEffect(initialText, 40);
+  const { text, isTyping } = typingEffect(initialText, 30);
   return (
     <div>
       {text}
@@ -101,28 +101,27 @@ function App() {
   }
 
   const [info, setInfo] = useState('');
-  const [info2, setInfo2] = useState('');
 
-  // const [userInput, setUserInput] = useState('');
   const [responses, setResponses] = useState([]);
   const [responseIndex, setResponseIndex] = useState(0);
   const [apiEndpoint, setApiEndpoint] = useState('getInfo'); // Initial endpoint
   const [apiEndpointChoices, setApiEndpointChoices] = useState('getChoices'); // Initial choices endpoint
   const apiUrl = 'http://localhost:4000';
 
-  const clearResponses = () => {
-    setResponses([]); // Clears all the responses
-  };
+  // const clearResponses = () => {
+  //   setResponses([]); // Clears all the responses
+  // };
 
-  const fetchResponse = async (endpoint) => {
+
+  const fetchResponse = async () => {
     try {
-      const response = await fetch(apiUrl + `/api/${endpoint}`);
+      const response = await fetch(apiUrl + '/api/getInfo');
       if (!response.ok) {
         throw new Error(`ERROR: status: ${response.status}`);
       }
       const data = await response.json();
       console.log(data);
-      // setInfo(data.message); // Update the info state with the fetched dialogue
+      setInfo(data.message); // Update the info state with the fetched dialogue
       // setResponseIndex(0);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -130,32 +129,13 @@ function App() {
 
   };
 
-  const clearResponse = async () => {
-    await fetchResponse('clearResponse');
-  };
-
-  // const fetchResponseForChoices = async () => {
-  //   try {
-  //     const response = await fetch(apiUrl + '/api/getChoices');
-  //     if (!response.ok) {
-  //       throw new Error(`ERROR: status: ${response.status}`);
-  //     }
-  //     const data = await response.json();
-  //     setInfo2(data.message);
-  //     setResponseIndex(0);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
 
   const handleSubmit = (event) => {
 
     event.preventDefault();
     console.log(string);
     const intChoice = parseInt(string, 10); // Convert string to an integer
-    clearResponses();
-
-
+    // clearResponses();
 
     // Send the user input to the API
     fetch(apiUrl + '/api/giveUserAnswer', {
@@ -168,7 +148,6 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        clearResponse();
         if (data.status === 'ended') {
           setResponses([]);
           fetchResponse(); // Fetch initial response again
@@ -197,16 +176,6 @@ function App() {
         setInfo(data.message);
         setResponseIndex(0);
 
-        // setTimeout(() => {
-        //   try {
-        //     // Your code to execute after the 6-second delay
-        //   } catch (error) {
-        //     // Handle errors, if any
-        //   }
-        // }, 10000); // Wait for 6 seconds (6000 milliseconds)
-
-
-
       } catch (error) {
         console.error("Error fetching initial data:", error);
       }
@@ -234,9 +203,8 @@ function App() {
                 <TypingEffectComponent initialText={info}>
                 </TypingEffectComponent>
 
-{/* 
-                <TypingEffectComponent initialText={info2}>
-                </TypingEffectComponent> */}
+
+
               </div>
 
 
@@ -256,7 +224,9 @@ function App() {
                     placeholder='|'
                   />
                   <button type="submit" style={{ display: 'none' }}>Submit</button>
+                  
                 </form>
+
 
                 {/* {isGlitching ? (
                   <div>
