@@ -23,12 +23,6 @@ function App() {
   const [text, setText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
 
-
-
-
-
-
-
   function typingEffect(recievedText, delay) {
     // const [text, setText] = useState('');
     // const [isTyping, setIsTyping] = useState(true);
@@ -100,9 +94,7 @@ function App() {
 
 
 
-
-
-
+  // Audio SFX
   // const handleInputClick = () => {
   //   switch (soundIndex) {
   //     case 1:
@@ -142,7 +134,6 @@ function App() {
 
 
   //API REQUESTS:
-
   const [string, setString] = useState('');
   const updateString = (event) => {
     setString(event.target.value);
@@ -156,10 +147,6 @@ function App() {
   const [apiEndpointChoices, setApiEndpointChoices] = useState('getChoices'); // Initial choices endpoint
   const apiUrl = 'http://localhost:4000';
 
-  // const clearResponses = () => {
-  //   setResponses([]); // Clears all the responses
-  // };
-
 
   const fetchResponse = async () => {
     try {
@@ -170,7 +157,6 @@ function App() {
       const data = await response.json();
       console.log(data);
       setInfo(data.message); // Update the info state with the fetched dialogue
-      // setResponseIndex(0);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -198,7 +184,6 @@ function App() {
           setInfo(data.message);
           setFormSubmitted(true); // Reset formSubmitted
 
-
         } else {
           setResponses((prevResponses) => [...prevResponses, data.message]);
           fetchResponse();
@@ -208,8 +193,6 @@ function App() {
 
     setString('');
     document.querySelector('.inputBar').value = '';
-
-
   };
 
 
@@ -249,14 +232,13 @@ function App() {
             <div className="buttonScreen" style={{ marginTop: '30px' }}>
 
               <div className="terminal" style={{ marginTop: '20px' }}>
-              {snakeGame()};
+                {/* {snakeGame()};
                 {displaySnake ? (
-                <TypingEffectComponent initialText={snakeGame()}></TypingEffectComponent> // Render SnakeGame if displaySnake is true
-                ) : (
-                <TypingEffectComponent initialText="You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car's window.
-                ">
-                </TypingEffectComponent>
-                )}
+                  <TypingEffectComponent initialText={snakeGame()}></TypingEffectComponent> // Render SnakeGame if displaySnake is true
+                ) : ( */}
+                  <TypingEffectComponent initialText={info}>
+                  </TypingEffectComponent>
+                {/* )} */}
               </div>
 
 
@@ -277,7 +259,6 @@ function App() {
                   />
                   <button type="submit" style={{ display: 'none' }}>Submit</button>
                 </form>
-
 
                 {/* {isGlitching ? (
                   <div>
