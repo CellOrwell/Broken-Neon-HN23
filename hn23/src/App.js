@@ -47,18 +47,6 @@ function TypingEffectComponent({ initialText }) {
 
 function App() {
 
-  const [string, setString] = useState('');
-
-  const updateString = (event) => {
-    setString(event.target.value);
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();  //Prevents page from refreshing
-    // processResponse(string);
-    setString('');
-  }
-
   const [playRain] = useSound(rainSound);
   const [playCar] = useSound(carSound);
   const [playDoor] = useSound(doorSound);
@@ -90,7 +78,7 @@ function App() {
 
   const [isGlitching, setIsGlitching] = useState(false);
 
- 
+
   const applyGlitchEffect = (event) => {
     event.preventDefault(); // Prevents the default behavior (e.g., page refreshing)
 
@@ -102,6 +90,131 @@ function App() {
       setIsGlitching(false);
     }, 5000);
   };
+
+
+
+  //API REQUESTS:
+
+  const [string, setString] = useState('');
+  const updateString = (event) => {
+    setString(event.target.value);
+  }
+
+  const [info, setInfo] = useState('');
+  const [info2, setInfo2] = useState('');
+
+  // const [userInput, setUserInput] = useState('');
+  const [responses, setResponses] = useState([]);
+  const [responseIndex, setResponseIndex] = useState(0);
+  const [apiEndpoint, setApiEndpoint] = useState('getInfo'); // Initial endpoint
+  const [apiEndpointChoices, setApiEndpointChoices] = useState('getChoices'); // Initial choices endpoint
+  const apiUrl = 'http://localhost:4000';
+
+  const clearResponses = () => {
+    setResponses([]); // Clears all the responses
+  };
+
+  const fetchResponse = async (endpoint) => {
+    try {
+      const response = await fetch(apiUrl + `/api/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`ERROR: status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+      // setInfo(data.message); // Update the info state with the fetched dialogue
+      // setResponseIndex(0);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+
+  };
+
+  const clearResponse = async () => {
+    await fetchResponse('clearResponse');
+  };
+
+  // const fetchResponseForChoices = async () => {
+  //   try {
+  //     const response = await fetch(apiUrl + '/api/getChoices');
+  //     if (!response.ok) {
+  //       throw new Error(`ERROR: status: ${response.status}`);
+  //     }
+  //     const data = await response.json();
+  //     setInfo2(data.message);
+  //     setResponseIndex(0);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
+
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+    console.log(string);
+    const intChoice = parseInt(string, 10); // Convert string to an integer
+    clearResponses();
+
+
+
+    // Send the user input to the API
+    fetch(apiUrl + '/api/giveUserAnswer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ choice: intChoice }), // Send the integer input
+
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        clearResponse();
+        if (data.status === 'ended') {
+          setResponses([]);
+          fetchResponse(); // Fetch initial response again
+          setInfo(data.message); // Update the info state with the fetched dialogue
+        } else {
+          setResponses((prevResponses) => [...prevResponses, data.message]);
+          fetchResponse(); // Fetch the next part of the dialogue
+          setInfo(data.message); // Update the info state with the fetched dialogue
+        }
+      });
+
+    // Clear the input field
+    setString(''); // Clear the 'string' state
+  };
+
+
+
+  useEffect(() => {
+    const fetchInitialResponse = async () => {
+      try {
+        const response = await fetch(apiUrl + '/api/getInfo');
+        if (!response.ok) {
+          throw new Error(`ERROR: status: ${response.status}`);
+        }
+        const data = await response.json();
+        setInfo(data.message);
+        setResponseIndex(0);
+
+        // setTimeout(() => {
+        //   try {
+        //     // Your code to execute after the 6-second delay
+        //   } catch (error) {
+        //     // Handle errors, if any
+        //   }
+        // }, 10000); // Wait for 6 seconds (6000 milliseconds)
+
+
+
+      } catch (error) {
+        console.error("Error fetching initial data:", error);
+      }
+    };
+
+    fetchInitialResponse();
+  }, [apiEndpoint, apiEndpointChoices]);
+
 
   return (
     <div>
@@ -116,13 +229,14 @@ function App() {
             <div className="buttonScreen" style={{ marginTop: '30px' }}>
 
               <div className="terminal" style={{ marginTop: '20px' }}>
-              {/* <button className="computerButton"></button> */}
+                {/* <button className="computerButton"></button> */}
 
-                {/* {initialText = printInfo()}; */}
-                <TypingEffectComponent initialText="You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car's window.
-                ">
+                <TypingEffectComponent initialText={info}>
                 </TypingEffectComponent>
 
+{/* 
+                <TypingEffectComponent initialText={info2}>
+                </TypingEffectComponent> */}
               </div>
 
 
@@ -134,7 +248,11 @@ function App() {
                     type='text'
                     onChange={(event) => updateString(event)}
                     onClick={handleInputClick}
-
+                    onKeyPress={(event) => {
+                      if (event.key === 'Enter') {
+                        handleSubmit(event);
+                      }
+                    }}
                     placeholder='|'
                   />
                   <button type="submit" style={{ display: 'none' }}>Submit</button>

@@ -1,15 +1,18 @@
 const game = require("./index");
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
-const port = 3000;
+const port = 4000;
+
+
+app.use(cors());
+
 
 app.use(express.json());
 
 app.get('/api/getInfo', (req, res) => {
-    const data = {
-        message: game.printInfo(),
-    }
-    res.json(data);
+    res.json({message: game.printInfo()});
 });
 
 app.get('/api/getChoices', (req, res) => {
