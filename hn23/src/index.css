@@ -71,17 +71,19 @@ header {
   /* margin-bottom:50px; */
 }
 
-.computerButton{
+.computerButton {
   border-radius: 25px;
   /* box-shadow: 0px 15px rgba(0, 0, 0, 0.404) inset; */
   box-shadow: 2px 10px rgba(0, 0, 0, 0.404);
 
   background-color: rgb(104, 36, 36);
   bottom: 50px;
-  right:100px;
+  right: 100px;
   width: 40px;
-  margin-left:790px;
-  margin-top:250px;
+  margin-left: 790px;
+  position: -webkit-sticky;
+  /* top:500px; */
+  /* margin-top:250px; */
   height: 40px;
   border: 2px solid rgb(58, 16, 16);
 }
@@ -90,22 +92,55 @@ header {
   border-radius: 50px;
   box-shadow: 0px 15px rgba(0, 0, 0, 0.404) inset;
   background-color: rgb(16, 17, 19);
-  text-align: center;
+  /* text-align: center; */
+  text-align: left;
+  padding: 15px;
+  /* text-indent: ; */
+  align-items: left;
   bottom: 50px;
-  width: 750px;
-  height: 500px;
+  width: 735px;
+  height: 470px;
   /* border: 8px solid rgb(8, 110, 73); */
   border: 8px solid rgb(15, 15, 15);
 
   /* padding: 250px; */
   margin: auto;
-  align-items: center;
+  /* align-items: center; */
   /* margin-bottom:50px; */
 
 }
 
 
-.computerLine{
+.inputBar {
+  background-color: rgb(16, 17, 19);
+  text-align: left;
+  /* padding:15px; */
+  align-items: left;
+  /* bottom: 60px; */
+  width: 735px;
+  z-index: 1;
+  position: absolute;
+  margin: auto;
+  /* margin-bottom:50px; */
+  color: rgb(10, 150, 96);
+  font-family: 'Courier New', Courier, monospace;
+  /* left:494px;
+  top: 720px; */
+  outline: none;
+  border-style: none;
+  /* left: 38.5em;
+  top: 54em; */
+
+  left: 37.5em;
+  top: 50.5em;
+  height: 25px;
+}
+
+::placeholder {
+  color: green;
+}
+
+.computerLine {
   padding-top: 1px;
   background-color: rgb(109, 109, 109);
   text-align: center;
