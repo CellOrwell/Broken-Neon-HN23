@@ -164,7 +164,7 @@ function App() {
   };
 
   function setLighting(light) {
-    switch(light) {
+    switch (light) {
       case "dim":
         document.getElementsByClassName("lightingScreen")[0].style.opacity = "0.25";
         document.getElementsByClassName("lightingScreen")[0].style.color = "yellow";
@@ -178,7 +178,7 @@ function App() {
         document.getElementsByClassName("lightingScreen")[0].style.color = "yellow";
         break;
     }
-    return(<div class="lightingScreen"></div>);
+    return (<div class="lightingScreen"></div>);
   }
 
 
@@ -241,7 +241,7 @@ function App() {
     <div>
       <header>
 
-        <h1 style={{ margin: 'auto' }}>HackNotts '23 </h1>
+        <h1 style={{ margin: 'auto' }}>- Broken Neon - </h1>
       </header>
 
       <main>
@@ -254,10 +254,10 @@ function App() {
                 {displaySnake ? (
                   <TypingEffectComponent initialText={snakeGame()}></TypingEffectComponent> // Render SnakeGame if displaySnake is true
                 ) : ( */}
-                  <TypingEffectComponent initialText={info}>
-                  </TypingEffectComponent>
+                <TypingEffectComponent initialText={info}>
+                </TypingEffectComponent>
                 {/* )} */}
-              {snakeGame(`As you walk in, you hear something behind you...
+                {/* {snakeGame(`As you walk in, you hear something behind you...
 
 ** B A M **
         
@@ -268,7 +268,7 @@ casting an eerie light within the room.
 
 What do you do?`)};
                 {displaySnake ? (
-                <TypingEffectComponent initialText={snakeGame(`As you walk in, you hear something behind you...
+                  <TypingEffectComponent initialText={snakeGame(`As you walk in, you hear something behind you...
 
 ** B A M **
         
@@ -278,7 +278,7 @@ In the dim glow of an emergency exit sign, you can make out the flickering scree
 casting an eerie light within the room.
 
 What do you do?`)}></TypingEffectComponent> // Render SnakeGame if displaySnake is true
-                ) : (<div></div>)}
+                ) : (<div></div>)} */}
               </div>
 
 
