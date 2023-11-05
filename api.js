@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.get('/api/getInfo', (req, res) => {
     const data = {
-        message: game.printInfo(),
+        message: game.getAllPrint(),
     }
     res.json(data);
 });
