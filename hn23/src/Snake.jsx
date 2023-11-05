@@ -22,15 +22,10 @@ class Vec2 {
 }
 
 class Snake extends EventEmitter{
-    constructor(terminalText) {
+    constructor(terminalText1) {
         super();
-        this.terminalText = terminalText;
-        if (terminalText === undefined){
-            this.terminalText = `fjuehfuehufhufuehfehufheufueufhhfeuhfuheufh
-fjuehfueufheuhfuehfuehufehufhuehfuefhueufeufhuefuehfuehufue
-fehufhuehfuehufheufuehfeufhueufheuf`;
-        }
-
+        this.terminalText = terminalText1;
+        console.log(this.terminalText);
         this.displayChoice = 0;// 0 - Menu 1 - Game 2 - Retry Screen
         this.emit('changeMenu', "");
         this.getMenuView();
@@ -38,16 +33,22 @@ fehufhuehfuehufheufuehfeufhueufheuf`;
     }
 
     fillLine(stringArray) {
-        let longest = 0;
+        let newStringArray = [];
+        let newRow = [];
+        let j = 0;
         for (let i = 0; i < stringArray.length; i++) {
-            if (longest < stringArray[i].length) {
-                longest = stringArray[i].length;
+            if (stringArray[i].length > 72) {
+                newStringArray[i + j] = stringArray[i].substring(0, 72);
+                j++;
+                newStringArray[i + j] = stringArray[i].substring(72);
+            } else {
+                newStringArray[i + j] = stringArray[i];
             }
         }
-        for (let i = 0; i < stringArray.length; i++) {
-            stringArray[i] = stringArray[i].padEnd(longest, ' ');
+        for (let i = 0; i < newStringArray.length; i++) {
+            newStringArray[i] = newStringArray[i].padEnd(72, ' ');
         }
-        return stringArray;
+        return newStringArray;
     }
 
     genASCIIOutput() {
