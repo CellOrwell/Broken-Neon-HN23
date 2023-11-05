@@ -1,3 +1,42 @@
+.glitchShake-container {
+    position: relative;
+}
+
+.glitchShake {
+    animation: glitch 1s linear;
+    animation-fill-mode: forwards;
+}
+
+div[type="ASCIIart"] {
+    white-space: pre;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-5px, -5px);
+    }
+
+    40% {
+        transform: translate(5px, 5px);
+    }
+
+    60% {
+        transform: translate(-5px, 5px);
+    }
+
+    80% {
+        transform: translate(5px, -5px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
 body {
 
   /* background-image: url('bit.png');
@@ -279,3 +318,4 @@ header {
   margin: 0; 
   color: white;
 } */
+

@@ -5,45 +5,11 @@ import rainSound from './rain.mp3';
 import carSound from './carArriving.mp3';
 import doorSound from './doorSlam.mp3';
 import footstepsSound from './footsteps.mp3';
+import snakeGame from './Snake.jsx';
 
-function typingEffect(recievedText, delay) {
-  const [text, setText] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
+const displaySnake = 1;
 
-  useEffect(() => {
-    let currentIndex = 0;
 
-    if (isTyping) {
-      const timer = setInterval(() => {
-        if (currentIndex < recievedText.length) {
-          setText(recievedText.slice(0, currentIndex + 1));
-          currentIndex++;
-        }
-        else {
-          setIsTyping(false);
-          clearInterval(timer);
-        }
-      }, delay);
-
-      return () => {
-        clearInterval(timer);
-      };
-    }
-  }, [isTyping, recievedText, delay]);
-
-  return (
-    { text, isTyping }
-  );
-}
-
-function TypingEffectComponent({ initialText }) {
-  const { text, isTyping } = typingEffect(initialText, 30);
-  return (
-    <div>
-      {text}
-    </div>
-  );
-}
 
 function App() {
   const [playRain] = useSound(rainSound);
@@ -51,28 +17,111 @@ function App() {
   const [playDoor] = useSound(doorSound);
   const [playFootsteps] = useSound(footstepsSound);
 
-  const [soundIndex, setSoundIndex] = useState(true);
+  const [soundIndex, setSoundIndex] = useState(1);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [text, setText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
 
-  const handleInputClick = () => {
-    switch (soundIndex) {
-      case 1:
-        playRain();
-        break;
-      case 2:
-        playCar();
-        break;
-      case 3:
-        playDoor();
-        break;
-      case 4:
-        playFootsteps();
-        break;
-      default:
-        break;
-    }
 
-    setSoundIndex(soundIndex + 1);
-  };
+
+
+
+
+
+  function typingEffect(recievedText, delay) {
+    // const [text, setText] = useState('');
+    // const [isTyping, setIsTyping] = useState(true);
+
+    useEffect(() => {
+      let currentIndex = 0;
+
+      if (isTyping) {
+        const timer = setInterval(() => {
+          if (currentIndex < recievedText.length) {
+            setText(recievedText.slice(0, currentIndex + 1));
+            currentIndex++;
+          }
+          else {
+            setIsTyping(false);
+            clearInterval(timer);
+          }
+        }, delay);
+
+        return () => {
+          clearInterval(timer);
+        };
+      }
+    }, [isTyping, recievedText, delay]);
+
+    return (
+      { text, isTyping }
+    );
+  }
+
+  function TypingEffectComponent({ initialText }) {
+    const [text, setText] = useState('');
+    const [isTyping, setIsTyping] = useState(true);
+    useEffect(() => {
+      if (formSubmitted === true) {
+        // If formSubmitted is true, clear the text by resetting the state
+        setText('');
+        setFormSubmitted(false); // Reset formSubmitted
+      }
+    }, [formSubmitted]);
+
+    useEffect(() => {
+      let currentIndex = 0;
+
+      if (isTyping) {
+        const timer = setInterval(() => {
+          if (currentIndex < initialText.length) {
+            setText(initialText.slice(0, currentIndex + 1));
+            currentIndex++;
+          } else {
+            setIsTyping(false);
+            clearInterval(timer);
+          }
+        }, 30);
+
+        return () => {
+          clearInterval(timer);
+        };
+      }
+    }, [isTyping, initialText]);
+
+    return (
+      <div>
+        {text}
+      </div>
+    );
+  }
+
+
+
+
+
+
+
+  // const handleInputClick = () => {
+  //   switch (soundIndex) {
+  //     case 1:
+  //       playRain();
+  //       break;
+  //     case 2:
+  //       playCar();
+  //       break;
+  //     case 3:
+  //       playDoor();
+  //       break;
+  //     case 4:
+  //       playFootsteps();
+  //       break;
+  //     default:
+  //       break;
+  //   }
+
+  //   setSoundIndex(soundIndex + 1);
+  // };
 
   const [isGlitching, setIsGlitching] = useState(false);
 
@@ -128,38 +177,40 @@ function App() {
   };
 
 
+
   const handleSubmit = (event) => {
-
     event.preventDefault();
-    console.log(string);
-    const intChoice = parseInt(string, 10); // Convert string to an integer
-    // clearResponses();
+    const intChoice = parseInt(string, 10);
 
-    // Send the user input to the API
     fetch(apiUrl + '/api/giveUserAnswer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ choice: intChoice }), // Send the integer input
-
+      body: JSON.stringify({ choice: intChoice }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.status === 'ended') {
           setResponses([]);
-          fetchResponse(); // Fetch initial response again
-          setInfo(data.message); // Update the info state with the fetched dialogue
+          fetchResponse();
+          setInfo(data.message);
+          setFormSubmitted(true); // Reset formSubmitted
+
+
         } else {
           setResponses((prevResponses) => [...prevResponses, data.message]);
-          fetchResponse(); // Fetch the next part of the dialogue
-          setInfo(data.message); // Update the info state with the fetched dialogue
+          fetchResponse();
+          setInfo(data.message);
         }
       });
 
-    // Clear the input field
-    setString(''); // Clear the 'string' state
+    setString('');
+    document.querySelector('.inputBar').value = '';
+
+
   };
+
 
 
 
@@ -180,6 +231,7 @@ function App() {
     };
 
     fetchInitialResponse();
+
   }, [apiEndpoint, apiEndpointChoices]);
 
 
@@ -196,13 +248,14 @@ function App() {
             <div className="buttonScreen" style={{ marginTop: '30px' }}>
 
               <div className="terminal" style={{ marginTop: '20px' }}>
-                {/* <button className="computerButton"></button> */}
-
-                <TypingEffectComponent initialText={info}>
+              {snakeGame()};
+                {displaySnake ? (
+                <TypingEffectComponent initialText={snakeGame()}></TypingEffectComponent> // Render SnakeGame if displaySnake is true
+                ) : (
+                <TypingEffectComponent initialText="You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car's window.
+                ">
                 </TypingEffectComponent>
-
-
-
+                )}
               </div>
 
 
@@ -211,9 +264,9 @@ function App() {
                   <input
                     style={{ fontSize: 14 }}
                     className="inputBar"
-                    type='text'
+                    type="text"
                     onChange={(event) => updateString(event)}
-                    onClick={handleInputClick}
+                    // onClick={handleInputClick}
                     onKeyPress={(event) => {
                       if (event.key === 'Enter') {
                         handleSubmit(event);
@@ -222,7 +275,6 @@ function App() {
                     placeholder='|'
                   />
                   <button type="submit" style={{ display: 'none' }}>Submit</button>
-                  
                 </form>
 
 
