@@ -6,8 +6,6 @@ import carSound from './carArriving.mp3';
 import doorSound from './doorSlam.mp3';
 import footstepsSound from './footsteps.mp3';
 
-
-
 function typingEffect(recievedText, delay) {
   const [text, setText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
@@ -90,6 +88,21 @@ function App() {
     setSoundIndex(soundIndex + 1);
   };
 
+  const [isGlitching, setIsGlitching] = useState(false);
+
+ 
+  const applyGlitchEffect = (event) => {
+    event.preventDefault(); // Prevents the default behavior (e.g., page refreshing)
+
+    document.body.classList.add('glitch-effect');
+    setIsGlitching(true);
+
+    setTimeout(() => {
+      document.body.classList.remove('glitch-effect');
+      setIsGlitching(false);
+    }, 5000);
+  };
+
   return (
     <div>
       <header>
@@ -103,13 +116,15 @@ function App() {
             <div className="buttonScreen" style={{ marginTop: '30px' }}>
 
               <div className="terminal" style={{ marginTop: '20px' }}>
+              {/* <button className="computerButton"></button> */}
 
+                {/* {initialText = printInfo()}; */}
                 <TypingEffectComponent initialText="You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car's window.
-                Recalling your long-standing curiosity about the rarely-visited arcade, you decide to finally explore it for yourself.">
+                ">
                 </TypingEffectComponent>
 
-                <button className="computerButton"></button>
               </div>
+
 
               <div>
                 <form onSubmit={handleSubmit}>
@@ -118,13 +133,24 @@ function App() {
                     className="inputBar"
                     type='text'
                     onChange={(event) => updateString(event)}
-                    // onClick={() => playRain()}
                     onClick={handleInputClick}
 
                     placeholder='|'
                   />
                   <button type="submit" style={{ display: 'none' }}>Submit</button>
                 </form>
+
+                {/* {isGlitching ? (
+                  <div>
+                    {}
+                  </div>
+                ) : (
+                  <div>
+                    {}
+                    <button onClick={applyGlitchEffect}>Apply Glitch Effect</button>
+                  </div>
+                )} */}
+
               </div>
 
             </div>
