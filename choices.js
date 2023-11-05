@@ -6,7 +6,8 @@ var choiceList = [
         unconditionalOptions: [{
             id: 1,
             desc: "Walk up to the Abandoned Arcade"
-        }]
+        }],
+        lights: "dim",
     },
     {
         id: 1,
@@ -37,7 +38,8 @@ The controls seem operational, and a small prompt on the screen asks if you want
         unconditionalOptions: [{
             id: 3, //eventually
             desc: "Play the Game.",
-        }]
+        }],
+        lights: "whitescreen",
     },
     {
         id: 3,
@@ -48,7 +50,8 @@ You hear the nostalgic 8-bit music fill the air, as the arcade is instantly brou
         unconditionalOptions: [{
             id: 4,
             desc: "Make your way over to the Space Invaders machine"
-        }]
+        }],
+        lights: "flickeron",
     },
     {
         id: 4,
@@ -168,6 +171,7 @@ Although the arcade is abandoned, the lights outside were shining for once?
             id: 10,
             desc: "Go to the Door"
         }],
+        lights: "dim"
     },
     {
         id: 10,
@@ -296,6 +300,13 @@ function changeText(str) {
     getChoice().desc = str;
 }
 
+function getLights() {
+    if(getChoice().hasOwnProperty("lights")) {
+        return getChoice().lights;
+    }
+    return "";
+}
+
  module.exports = {
     getChoiceList,
     getChoice,
@@ -310,5 +321,6 @@ function changeText(str) {
     getUnCondOptionLength,
     isInInv,
     addInv,
-    addToInv
+    addToInv,
+    getLights
  };

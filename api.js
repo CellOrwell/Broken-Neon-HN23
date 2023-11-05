@@ -14,6 +14,7 @@ app.use(express.json());
 app.get('/api/getInfo', (req, res) => {
     const data = {
         message: game.getAllPrint(),
+        lights: game.getCurLight()
     }
     res.json(data);
 });

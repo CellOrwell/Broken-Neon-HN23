@@ -124,6 +124,10 @@ function getAllPrint() {
     return string;
 }
 
+function getCurLight() {
+    return choices.getLights();
+}
+
 // async function mainGame() {
 //     console.log(printInfo());
 //     console.log("");
@@ -148,5 +152,6 @@ module.exports = {
     processUserData,
     getUnprinted,
     setUnprinted,
-    getAllPrint
+    getAllPrint,
+    getCurLight,
 }
