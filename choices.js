@@ -2,11 +2,7 @@ var choiceList = [
     {
         id: 0,
         choName: "Car Park",
-        desc: `You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car\'s window.
-Recalling your long-standing curiosity about the rarely-visited arcade, you decide to finally explore it for yourself.
-        
-As the car pulls up towards the entrance, you step outside. The battered sign above the front door barely makes out the words \"Arcade.\" 
-Eerie silence surrounds you as you approach the entrance. The door creaks open as you slowly step inside.`,
+        desc: "You find yourself in a dimly illuminated parking lot, rain pouring down as you peer through the car\'s window.\nRecalling your long-standing curiosity about the rarely-visited arcade, you decide to finally explore it for yourself.\n\nAs the car pulls up towards the entrance, you step outside. The battered sign above the front door barely makes out the words \'Arcade.\'\nEerie silence surrounds you as you approach the entrance. The door creaks open as you slowly step inside.",
         unconditionalOptions: [{
             id: 1,
             desc: "Walk up to the Abandoned Arcade"
@@ -240,12 +236,9 @@ function getNewChoice(newChoice, unprintedOptions) {
             changeText(chosen.change);
         }
 
-        curChoice = chosen.id;
-        console.log(chosen);
+        curChoice = chosen.id;''
         if(chosen.hasOwnProperty("items")) {
             addToInv(chosen.items);
-            console.log("Hello!");
-            console.log(inventory);
         }
     } else {
         newChoiceNum = newChoiceMinus - getCondOptionLength();

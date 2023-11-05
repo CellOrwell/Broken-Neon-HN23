@@ -116,6 +116,14 @@ function setUnprinted(set) {
     unprintedOptions = set;
 }
 
+function getAllPrint() {
+    let string = "";
+    string += printInfo();
+    string += "\n";
+    string += printAllOptions();
+    return string;
+}
+
 // async function mainGame() {
 //     console.log(printInfo());
 //     console.log("");
@@ -140,4 +148,5 @@ module.exports = {
     processUserData,
     getUnprinted,
     setUnprinted,
+    getAllPrint
 }
