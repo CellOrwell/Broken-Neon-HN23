@@ -12,7 +12,6 @@ const displaySnake = 1;
 
 
 function App() {
-
   const [playRain] = useSound(rainSound);
   const [playCar] = useSound(carSound);
   const [playDoor] = useSound(doorSound);
@@ -132,7 +131,6 @@ function App() {
   };
 
 
-
   //API REQUESTS:
   const [string, setString] = useState('');
   const updateString = (event) => {
@@ -157,11 +155,31 @@ function App() {
       const data = await response.json();
       console.log(data);
       setInfo(data.message); // Update the info state with the fetched dialogue
+      setLighting(data.lights);
+      // setResponseIndex(0);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
 
   };
+
+  function setLighting(light) {
+    switch(light) {
+      case "dim":
+        document.getElementsByClassName("lightingScreen")[0].style.opacity = "0.25";
+        document.getElementsByClassName("lightingScreen")[0].style.color = "yellow";
+        break;
+      case "whitescreen":
+        document.getElementsByClassName("lightingScreen")[0].style.opacity = "0.45";
+        document.getElementsByClassName("lightingScreen")[0].style.color = "white";
+        break;
+      case "flickeron":
+        document.getElementsByClassName("lightingScreen")[0].style.opacity = "0.65";
+        document.getElementsByClassName("lightingScreen")[0].style.color = "yellow";
+        break;
+    }
+    return(<div class="lightingScreen"></div>);
+  }
 
 
 
@@ -239,6 +257,28 @@ function App() {
                   <TypingEffectComponent initialText={info}>
                   </TypingEffectComponent>
                 {/* )} */}
+              {snakeGame(`As you walk in, you hear something behind you...
+
+** B A M **
+        
+The door slams shut,  Panic sets in, and you fumble for the light switch. Unfortunately, it's a power outage, and the entire arcade remains in darkness.
+        
+In the dim glow of an emergency exit sign, you can make out the flickering screen of an arcade machine in the distance,
+casting an eerie light within the room.
+
+What do you do?`)};
+                {displaySnake ? (
+                <TypingEffectComponent initialText={snakeGame(`As you walk in, you hear something behind you...
+
+** B A M **
+        
+The door slams shut,  Panic sets in, and you fumble for the light switch. Unfortunately, it's a power outage, and the entire arcade remains in darkness.
+        
+In the dim glow of an emergency exit sign, you can make out the flickering screen of an arcade machine in the distance,
+casting an eerie light within the room.
+
+What do you do?`)}></TypingEffectComponent> // Render SnakeGame if displaySnake is true
+                ) : (<div></div>)}
               </div>
 
 
