@@ -139,7 +139,6 @@ function App() {
   };
 
 
-
   //API REQUESTS:
 
   const [string, setString] = useState('');
@@ -169,12 +168,31 @@ function App() {
       const data = await response.json();
       console.log(data);
       setInfo(data.message); // Update the info state with the fetched dialogue
+      setLighting(data.lights);
       // setResponseIndex(0);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
 
   };
+
+  function setLighting(light) {
+    switch(light) {
+      case "dim":
+        document.getElementsByClassName("lightingScreen")[0].style.opacity = "0.25";
+        document.getElementsByClassName("lightingScreen")[0].style.color = "yellow";
+        break;
+      case "whitescreen":
+        document.getElementsByClassName("lightingScreen")[0].style.opacity = "0.45";
+        document.getElementsByClassName("lightingScreen")[0].style.color = "white";
+        break;
+      case "flickeron":
+        document.getElementsByClassName("lightingScreen")[0].style.opacity = "0.65";
+        document.getElementsByClassName("lightingScreen")[0].style.color = "yellow";
+        break;
+    }
+    return(<div class="lightingScreen"></div>);
+  }
 
 
 
