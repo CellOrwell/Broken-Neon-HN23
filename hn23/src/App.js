@@ -46,14 +46,12 @@ function TypingEffectComponent({ initialText }) {
 }
 
 function App() {
-
   const [playRain] = useSound(rainSound);
   const [playCar] = useSound(carSound);
   const [playDoor] = useSound(doorSound);
   const [playFootsteps] = useSound(footstepsSound);
 
-  const [soundIndex, setSoundIndex] = useState(1);
-
+  const [soundIndex, setSoundIndex] = useState(true);
 
   const handleInputClick = () => {
     switch (soundIndex) {
