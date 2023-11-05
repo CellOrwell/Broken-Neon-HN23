@@ -83,6 +83,10 @@ What do you do next?`,
                 desc: "Play the Game.",
                 dependence: "Joycon",
                 items: "SI Finished",
+                change: `
+The game bugs out, and the system crashes. The lights around the arcade flicker before returning to a dimmer setting.
+
+You start to hear a slight buzzing on the other side of the room, where you can see a new, weird-looking arcade machine.`
             }
         ]
     },
@@ -95,13 +99,15 @@ You decide to browse the various shelves, when you spot something interesting—
 You wonder if this key might be the solution to unlocking the locked door.`,
         unconditionalOptions: [
         {
-            id: 4,
-            desc: "Go back to the Space Invaders Cabinet"
-        },
-        {
             id: 6,
             desc: "Pick Up the Key.",
-            items: "Key"
+            items: "Key",
+            change: `
+You've collected the key now, there's nothing else to do here!`
+        },
+        {
+            id: 4,
+            desc: "Go back to the Space Invaders Cabinet"
         },
         {
             id: 7,
@@ -154,16 +160,23 @@ With the joycon in hand, you can now fix the broken arcade machine.`,
     {
         id: 9,
         choName: "Arcade Mini Terminal",
-        desc: "I am very posh",
+        desc: `
+You play the game. You are controlling a man in 2077, who's investigating an abandoned arcade on his street.
+
+Despite the horrendous, rainy conditions, the man still pulls up to the arcade in his car. In front of him, the front doors.
+
+Although the arcade is abandoned, the lights outside were shining for once? 
+
+\"What?\", the man asks. \"Has someone been in here before?\"`,
         unconditionalOptions: [{
             id: 10,
-            desc: "N/A"
+            desc: "Go to the Door"
         }],
     },
     {
         id: 10,
         choName: "End",
-        desc: "I am very posh",
+        desc: "Did someone just open the door?",
         end: "endgame"
     },
 ]
@@ -222,7 +235,11 @@ function getNewChoice(newChoice, unprintedOptions) {
     let chosen = null;
     if(newChoiceMinus <= getCondOptionLength()) {
         newChoiceNum = newChoiceMinus;
-        chosen = getConditionalOptions()[newChoiceMinus - 1];
+        chosen = getConditionalOptions()[newChoiceNum - 1];
+        if(chosen.hasOwnProperty("change")) {
+            changeText(chosen.change);
+        }
+
         curChoice = chosen.id;
         if(chosen.hasOwnProperty("items")) {
             addToInv(chosen.items);
@@ -230,6 +247,9 @@ function getNewChoice(newChoice, unprintedOptions) {
     } else {
         newChoiceNum = newChoiceMinus - getCondOptionLength();
         chosen = getUnConditionalOptions()[newChoiceNum - 1];
+        if(chosen.hasOwnProperty("change")) {
+            changeText(chosen.change);
+        }
         curChoice = chosen.id;
         if(chosen.hasOwnProperty("items")) {
             addToInv(chosen.items);
@@ -274,6 +294,10 @@ function isInInv(item) {
 
 function addToInv(item) {
     inventory.push(item);
+}
+
+function changeText(str) {
+    getChoice().desc = str;
 }
 
  module.exports = {

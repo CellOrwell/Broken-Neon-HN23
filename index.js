@@ -27,7 +27,7 @@ function printConditionalOptions() {
         if(choices.isInInv(chosen.dependence)) {
             console.log((i - unprintedOptions) + ". " + chosen.desc);
         } else if (choices.addInv(chosen.items) && choices.isInInv(chosen.dependence)){
-            console.log((i - unprintedOptions) + ".shush " + chosen.desc);
+            console.log((i - unprintedOptions) + ". " + chosen.desc);
         } else {
             unprintedOptions++;
         }
@@ -46,7 +46,7 @@ function printUnConditionalOptions() {
                 unprintedOptions++;
             }
         } else {
-            console.log((i + choices.getCondOptionLength() - unprintedOptions) + ". " + choices.getUnConditionalOptions()[i - 1].desc);
+            console.log((i + choices.getCondOptionLength() - unprintedOptions) + ". " + chosen.desc);
         }
     }
 }
@@ -83,6 +83,7 @@ async function mainGame() {
     printAllOptions();
     await getUserInput();
     if(choices.getChoice().hasOwnProperty("end")) {
+        printInfo();
         rl.close();
         process.exit(0);
     } else if (choices.getChoice().hasOwnProperty("items")) {
